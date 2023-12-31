@@ -27,19 +27,19 @@ export default function Row({ title, category }) {
           {title} 
         </h1>
       </Link>
-      <div className="flex gap-6 flex-wrap mx-10   items-center text-left ">
+      <div className="flex gap-6 flex-wrap mx-auto sm:mx-10  items-center text-left ">
         {cars.length > 0 &&
           cars?.map((car, index) => {
             return (
-              <div className="border-2 m-2 p-4   shadow-lg rounded-md " key={index}>
-              <Link to={`/car/${car._id}`} className="w-full " >
+              <div className="border-2 m-2 p-4 min-w-[260px]  flex flex-col justify-center items-center  shadow-lg rounded-md " key={index}>
+              <Link to={`/car/${car._id}`} className="justify-cente " >
                 <img
                   src={car.images[0]}
                   alt=""
                   className={`w-[300px] h-[300px] rounded-lg object-cover `}
                 />
                 </Link>
-                <div className="flex justify-between m-2 border-b-4 ">
+                <div className="flex w-full justify-between m-2 border-b-4 ">
                   <h1 className="hover:underline" > {car.title} </h1>
                   <p>{car.price}$ </p>
                 </div>
