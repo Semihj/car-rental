@@ -9,6 +9,10 @@ const CarSchema = new mongoose.Schema({
         type:String,
         
     },
+    category:{
+        type:String,
+        required:true,
+    },
     brand:{
         type:String,
         required:true,
@@ -18,6 +22,10 @@ const CarSchema = new mongoose.Schema({
         required:true,
     },
     year:{
+        type:Number,
+        required:true
+    },
+    price:{
         type:Number,
         required:true
     },
