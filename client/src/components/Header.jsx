@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 export default function Header() {
   const [openSideBar, setOpenSideBar] = useState(false);
@@ -10,9 +10,13 @@ export default function Header() {
   console.log(searchTerm)
   const navigate = useNavigate()
   const user = useSelector((state) => state.user.currentUser);
+  const params = useLocation();
+  console.log(params)
   
+  useEffect(() => {
+    setOpenSideBar(false)
+  }, [params])
   
-
 
  const handleSubmit = (e) => {
   e.preventDefault();
@@ -26,15 +30,15 @@ export default function Header() {
  return (
     <div className="h-[96px] w-screen bg-color-5  flex  ">
       {searchBar ? (
-        <div className=" absolute w-screen opacity-95  h-full ">
+        <div className=" absolute w-screen opacity-95  h-full z-20 ">
           <div className="">
             <input type="text" className="w-full text-left truncate border-b-4 border-color-4  mx-auto p-5" onChange={(e) => setSearchTerm(e.target.value) } />
             <Link  >
               
-              <FaSearch className="absolute top-5 right-5 text-[22px]  " onClick={handleSubmit} />
+              <FaSearch className="absolute top-5 right-5 text-[22px] cursor-pointer " onClick={handleSubmit} />
             </Link>
           </div>
-          <div className="bg-black w-full h-full " onClick={(e) => setSearchBar(false) } ></div>
+          <div className="bg-black w-full h-full " onClick={() => setSearchBar(false) } ></div>
         </div>
       ) : (
         ""
@@ -51,14 +55,15 @@ export default function Header() {
             className="hidden lg:inline-block focus:outline-none px-3 py-2 rounded-lg "
             onChange={(e) => setSearchTerm(e.target.value) }
           />
-          <Link>
-            <FaSearch className="text-white text-[22px] hidden lg:inline-block  " onClick={handleSubmit} />
-          </Link>
+          
+            <FaSearch className="text-white text-[20px] hidden lg:inline-block cursor-pointer " onClick={handleSubmit} />
+          
         </div>
         <div className="hidden md:flex items-center justify-center gap-5 text-color-2 text-[24px] hover:text-color-1 ">
           <Link to="/">Home</Link>
           <Link to="/about-us">About Us</Link>
           {user ? (
+            
             <Link to="/profile">
               <img
                 src={user.avatar}
@@ -66,20 +71,22 @@ export default function Header() {
                 className="w-10 h-10 rounded-full "
               />
             </Link>
+            
+            
           ) : (
             <Link to="/sign-in">Sign In</Link>
           )}
         </div>
-        <div className="flex items-center gap-7">
+        <div className="flex items-center gap-1 sm:gap-7">
           <Link >
             <FaSearch
-              className="text-white text-[22px] lg:hidden"
+              className="text-white text-[22px] lg:hidden cursor-pointer"
               onClick={() => setSearchBar(!searchBar)}
             />
           </Link>
           <FiMenu
             onClick={() => setOpenSideBar(true)}
-            className="w-[50px] h-[50px] text-color-1 md:hidden "
+            className="w-[30px] h-[30px] sm:h-[50px] sm:w-[50px] text-color-1 md:hidden "
           />
         </div>
       </div>
@@ -107,6 +114,8 @@ export default function Header() {
                   className="w-20 h-20 rounded-full "
                 />{" "}
               </Link>
+             
+              
             ) : (
               <Link to="/sign-in">Sign In</Link>
             )}

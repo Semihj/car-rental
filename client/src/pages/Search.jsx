@@ -91,9 +91,9 @@ export default function Search() {
         <div className="m-20 mx-auto  w-full flex flex-col md:flex-row  ">
           <form  className='flex md:hidden w-full min-h-[100px] p-5  bg-color-3 justify-center ' onSubmit={handleSubmit} >
             <div className=" w-full h-full flex flex-col m-2 gap-3  ">
-              <div className="flex items-center ">
-              <input id='searchTerm' defaultValue={searchTerm} placeholder='search...' onChange={handleChange} type="text" className='w-full h-[40px] rounded-md  ' />
-              <FaSearch className='text-[24px] absolute right-10 z-10 ' onClick={handleSubmit} />
+              <div className="flex items-center relative z-10 ">
+              <input id='searchTerm' defaultValue={searchTerm} placeholder='search...' onChange={handleChange} type="text" className='w-full h-[40px] rounded-md focus:outline-none ' />
+              <FaSearch className='text-[24px] absolute right-0 ' onClick={handleSubmit} />
               </div>
               <select id="brand" onChange={handleChange} defaultValue={brandTerm}  className='bg-color-2 rounded-md hover:bg-white ' name="" >
               <option value="">Select Brand</option>
