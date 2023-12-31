@@ -33,7 +33,7 @@ console.log(formData)
   return (
     <div className="w-screen  flex  ">
       <div className="w-full h-full flex justify-center   m-10  ">
-        <div className="bg-color-3 rounded-md p-10   md:min-w-[600px] min-w-[300px]  flex flex-col  items-center  ">
+        <div className="bg-color-3 rounded-md p-10   md:min-w-[600px] min-w-[260px]  flex flex-col  items-center  ">
           <h1 className="text-color-1 font-serif text-[35px] ">Sign Up</h1>
           <form className="w-full flex flex-col gap-5 " onSubmit={handleSubmit}>
             <div className="w-full flex flex-col gap-2  ">
